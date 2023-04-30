@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 会以namespace 和 id 在mapper 中查询具体的方法
+         resultType 表示返回对象的数据类型
+         parameterType 表示传入的数据对象
+         id  唯一标识，要与命名空间（抽象方法）中定义的方法名称一致
+ -->
+<!--namespace和里面标签的id两者都是为了动态代理而需要的-->
+<mapper namespace="com.example.ledoc.dao.UserDao">
+    <!--
+    	#{}对应的是pojo层实体类的属性名"abcDe"对应的"getAbcDe"的"abcDe"(驼峰命名规范)
+    	想简单点，对应属性名就行，复杂可能会乱ovo
+    -->
+    <select id="getUserById" parameterType="Integer" resultType="User">
+        select user_id, user_name, pass_word, create_time, modify_time
+        from user
+        where user_id = #{userId}
+    </select>
+</mapper>

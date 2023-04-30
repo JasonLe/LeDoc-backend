@@ -6,11 +6,25 @@ mybatis:
   #指定Mybatis的Mapper文件
   mapper-locations: classpath:mappers/*xml
   #指定Mybatis的实体目录
-  type-aliases-package: com.example.ledoc.mybatis.entity
+  type-aliases-package: com.example.ledoc.entity
+  configuration:
+    # 默认不开启
+    map-underscore-to-camel-case: true
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/ledoc?serverTimezone=UTC
     username: root
     password: root
+  application:
+    name: LeDoc
+# jwt 配置
+jwt:
+  header: "Authorization"     # token 返回头部
+  tokenPrefix: "Bearer "      # token 前缀
+  secret: "ledoc20230430" # 私钥
+  expireTime: 60            # token 的有效时间，单位是秒
 
+logging:
+  level:
+    com.example.ledoc.dao: debug
