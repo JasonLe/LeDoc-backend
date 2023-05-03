@@ -4,10 +4,10 @@ import com.example.ledoc.common.result.ResultEnum;
 
 /**
  * @author whl
- * @Description 自定义异常
+ * @Description 自定义异常,RuntimeException不需要每次都在方法上声明要throw什么异常
  * @date 2023/4/30 23:21
  */
-public class MyException extends Exception {
+public class MyException extends RuntimeException {
     private Integer code;
     private String msg;
 

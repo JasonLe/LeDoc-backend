@@ -20,12 +20,14 @@ public class MyExceptionHandler {
     @ExceptionHandler(value = {MyException.class})
     @ResponseBody
     public Result myException(MyException e) {
+        log.error(e.getMsg());
         return Result.failed(e);
     }
 
     @ExceptionHandler(value = {Exception.class})
     @ResponseBody
     public Result myException(Exception e) {
+        log.error(e.getMessage());
         return Result.failed(e);
     }
 

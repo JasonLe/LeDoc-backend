@@ -6,6 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Verification;
+import com.example.ledoc.common.exception.MyException;
+import com.example.ledoc.common.result.ResultEnum;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -115,13 +117,9 @@ public class JwtUtil {
                 return decodedJwt.getSubject();
             }
             return "";
-        } catch (TokenExpiredException e) {
-            e.printStackTrace();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "";
+            throw new MyException(ResultEnum.UNAUTHORIZED);
         }
-        return "";
     }
 
     /**
